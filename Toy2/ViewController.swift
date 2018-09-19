@@ -101,6 +101,12 @@ class ViewController: UIViewController {
         else {
             clearMode()
         }
+        
+        // Adds two cats to array if there are no current cats
+        if (Cat.count == 0) {
+            Cat.addCat(name: "Alice", image: #imageLiteral(resourceName: "cat4"), age: 1, breed: "Fat")
+            Cat.addCat(name: "Robin", image: #imageLiteral(resourceName: "cat3"), age: 3, breed: "American Shorthair")
+        }
     }
 
     override func didReceiveMemoryWarning() {
