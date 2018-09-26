@@ -21,7 +21,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var ClassLabel: UILabel!
     @IBOutlet weak var DisplayLabel: UILabel!
     
-    
     // Called when the user taps the submit button
     func submitMode(name: String, classYear: String) -> Void {
         submitted = true
@@ -62,12 +61,10 @@ class ViewController: UIViewController {
         UserDefaults.standard.removeObject(forKey: "class")
     }
     
-    
     // Called whenever the button is tapped
     @IBAction func SubmitTapped(_ sender: UIButton) {
        // If the submit button is tapped
         if (!submitted) {
-            
             // Retrieve text from each text field
             let name = NameTextField.text ?? ""
             let classYear = ClassTextField.text ?? ""
@@ -79,7 +76,6 @@ class ViewController: UIViewController {
             UserDefaults.standard.set(name, forKey: "name")
             UserDefaults.standard.set(classYear, forKey: "class")
         }
-            
         // If the user taps the "Clear" button
         else {
             // Call the method to reset screen
@@ -87,25 +83,38 @@ class ViewController: UIViewController {
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // If there is a user default stored, display it on the screen
         if (UserDefaults.standard.object(forKey: "name") != nil) {
             let name = UserDefaults.standard.string(forKey: "name")
             let classYear = UserDefaults.standard.string(forKey: "class")
-
             submitMode(name: name!, classYear: classYear!)
-            
         }
         else {
             clearMode()
         }
         
-        // Adds two cats to array if there are no current cats
+        // Adds cats from Internet to array if there are no current cats
         if (Cat.count == 0) {
-            Cat.addCat(name: "Alice", image: #imageLiteral(resourceName: "cat4"), age: 1, breed: "Fat")
-            Cat.addCat(name: "Robin", image: #imageLiteral(resourceName: "cat3"), age: 3, breed: "American Shorthair")
+            Cat.loadCats { (result) in
+                
+                // Add each cat in dictionary array to app
+                for dict in result {
+                    
+                    // Get image using image URL provided by array
+                    let imageURL = URL(string: dict["image"]!)
+                    let image = UIImage(data: try! Data(contentsOf: imageURL!))
+                    
+                    // Initialize cat characteristics from array
+                    let name = dict["name"]!
+                    let age = Int(dict["age"]!)
+                    let breed = dict["type"]!
+                    
+                    // Add cat to app
+                    Cat.addCat(name: name, image: image, age: age, breed: breed)
+                }
+            }
         }
     }
 
@@ -113,7 +122,5 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
 

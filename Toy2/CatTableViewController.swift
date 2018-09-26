@@ -26,13 +26,11 @@ class CatTableViewController: UITableViewController {
         return 1
     }
 
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return Cat.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "catCell", for: indexPath) as! CatTableViewCell
@@ -109,6 +107,4 @@ class CatTableViewController: UITableViewController {
             destVC.image = currentCat.image
         }
     }
-    
-
 }

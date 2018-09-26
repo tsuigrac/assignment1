@@ -6,9 +6,6 @@ class CatTableViewCell: UITableViewCell {
     @IBOutlet weak var catNameLabel: UILabel!
     @IBOutlet weak var catImageView: UIImageView!
     
-    
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -19,5 +16,4 @@ class CatTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
 }
