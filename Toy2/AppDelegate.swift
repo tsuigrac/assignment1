@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  Toy2
-//
-//  Created by Grace Tsui on 9/16/18.
-//  Copyright © 2018 Grace Tsui. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain

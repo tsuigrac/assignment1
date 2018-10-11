@@ -1,12 +1,16 @@
-//
-//  ViewController.swift
-//  Toy2
-//
-//  Created by Grace Tsui on 9/16/18.
-//  Copyright © 2018 Grace Tsui. All rights reserved.
-//
-
 import UIKit
+
+//Add method to dismiss keyboard
+extension UIViewController {
+    func dismissKeyboardWhenTappingAround() {
+       let tap : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+ 
+    @objc func dismissKeyboard() {
+        view.endEditing(false)
+    }
+}
 
 class ViewController: UIViewController {
     
@@ -85,6 +89,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Dismiss keyboard when user doesn't want to edit
+        dismissKeyboardWhenTappingAround()
         // If there is a user default stored, display it on the screen
         if (UserDefaults.standard.object(forKey: "name") != nil) {
             let name = UserDefaults.standard.string(forKey: "name")
