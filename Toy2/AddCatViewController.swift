@@ -4,6 +4,8 @@ class AddCatViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     var isPickerViewOpened : Bool = false
     
+    @IBOutlet weak var pickerView: UIPickerView!
+    
     @IBOutlet weak var TableView: UITableView!
     
     @IBOutlet weak var DoneButton: UIBarButtonItem!
@@ -107,6 +109,7 @@ class AddCatViewController: UIViewController, UITableViewDelegate, UITableViewDa
             else {
                 // Expandable cell
                 cell.PickerView.isHidden = false
+                cell.PickerView.selectRow(rowSelected, inComponent: 0, animated: true)
                 cell.TextView.isHidden = true
             }
         }

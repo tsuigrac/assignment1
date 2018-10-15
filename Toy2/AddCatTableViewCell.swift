@@ -3,6 +3,7 @@ import UIKit
 var age : Int = -1
 var name : String = ""
 var breed : String = ""
+var rowSelected : Int = 0
 
 class AddCatTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate {
     
@@ -51,10 +52,9 @@ class AddCatTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDa
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         age = row
-        
+        rowSelected = row
         //Reload the 2nd section in table view
         addCatViewController?.TableView.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
-        
         //Enable done button if fields are filled
         if (canSubmit()) {
             addCatViewController?.DoneButton.isEnabled = true
